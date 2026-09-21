@@ -1,0 +1,334 @@
+/* ==========================================================
+   CampusMarket | styles.css
+   Shared by every page, so the whole site looks consistent.
+   ========================================================== */
+
+/* ---------- 1. Design tokens (change a value here, it changes everywhere) ---------- */
+:root {
+  --ink: #14213d;         /* dark navy: header, headings, borders */
+  --paper: #f4f6f8;       /* page background */
+  --card: #ffffff;        /* card background */
+  --highlight: #fcd34d;   /* yellow: buttons, price tags, logo accent */
+  --accent: #0e7c66;      /* teal: category labels, focus ring */
+  --muted: #4a5568;       /* secondary text */
+
+  --font-heading: Georgia, "Times New Roman", serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --radius: 6px;
+  --shadow: 4px 4px 0 var(--ink);   /* hard offset shadow, our "pinned card" look */
+}
+
+/* ---------- 2. Reset and base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  margin: 0 0 0.5rem;
+}
+
+h1 { font-size: 2.4rem; }
+h2 { font-size: 1.7rem; }
+h3 { font-size: 1.2rem; }
+
+p { margin: 0 0 1rem; }
+
+a { color: var(--accent); }
+
+a:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- 3. Layout helpers ---------- */
+.container {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+.section-alt {
+  background: var(--card);
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.grid-products {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* Hides text visually but keeps it for screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* "Skip to content" link, appears only when tabbed to */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  background: var(--highlight);
+  color: var(--ink);
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  z-index: 10;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ---------- 4. Header and navigation ---------- */
+.site-header {
+  background: var(--ink);
+  color: #fff;
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+
+.logo span {
+  color: var(--highlight);
+}
+
+.nav-list {
+  display: flex;
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.25rem 0;
+  border-bottom: 3px solid transparent;
+}
+
+.nav-list a:hover,
+.nav-list a[aria-current="page"] {
+  border-bottom-color: var(--highlight);
+}
+
+.site-header a:focus-visible {
+  outline-color: var(--highlight);
+}
+
+/* ---------- 5. Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--highlight);
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.btn:hover {
+  background: #fde68a;
+}
+
+/* ---------- 6. Home page ---------- */
+.hero {
+  padding: 4rem 0;
+  border-bottom: 2px solid var(--ink);
+  background: var(--highlight);
+}
+
+.hero h1 {
+  max-width: 18ch;
+}
+
+.hero .lead {
+  max-width: 55ch;
+  font-size: 1.15rem;
+}
+
+.hero .btn {
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 4px 4px 0 #fff;
+}
+
+.hero .btn:hover {
+  background: #22335a;
+}
+
+.hero .btn:focus-visible {
+  outline-color: var(--ink);
+}
+
+.info-card {
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+.info-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.section h2 {
+  margin-bottom: 1.5rem;
+}
+
+/* Numbered steps ("How it works") */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  list-style: decimal inside;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.steps li::marker {
+  color: var(--accent);
+}
+
+.steps h3 {
+  display: inline;
+}
+
+.steps p {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--muted);
+}
+
+/* ---------- 7. Catalog page ---------- */
+.page-title {
+  padding: 2.5rem 0 0.5rem;
+}
+
+.page-title .lead {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 110px;
+  font-size: 3rem;
+  background: #e2ece9;
+  border-bottom: 2px solid var(--ink);
+}
+
+.product-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.category {
+  margin-bottom: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.description {
+  flex: 1;              /* pushes the price to the bottom of every card */
+  color: var(--muted);
+}
+
+.price {
+  align-self: flex-start;
+  margin: 0;
+  padding: 0.2rem 0.75rem;
+  font-weight: 700;
+  background: var(--highlight);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+}
+
+/* ---------- 8. Footer ---------- */
+.site-footer {
+  padding: 1.5rem 0;
+  background: var(--ink);
+  color: #fff;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* ---------- 9. Small screens ---------- */
+@media (max-width: 600px) {
+  h1 { font-size: 1.9rem; }
+  h2 { font-size: 1.45rem; }
+  .hero { padding: 2.5rem 0; }
+}

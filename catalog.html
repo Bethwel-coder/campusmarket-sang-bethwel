@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusMarket | Catalog</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <h1>CampusMarket</h1>
+      <p class="tagline">Your University Marketplace</p>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="catalog.html" class="active">Catalog</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="catalog-controls">
+      <h2>Product Catalog</h2>
+      <div class="filter-bar">
+        <input type="text" id="searchInput" placeholder="Search products...">
+        <select id="categorySelect">
+          <option value="all">All Categories</option>
+          <option value="books">Textbooks</option>
+          <option value="tech">Electronics</option>
+          <option value="lifestyle">Lifestyle</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Dynamic Integrated Gallery (Updates when catalog filters change) -->
+    <section class="gallery-section">
+      <h3>Featured Showcase</h3>
+      <div class="gallery-container">
+        <button id="prevBtn" class="gallery-btn" aria-label="Previous Slide">&larr;</button>
+        <div class="gallery-slide">
+          <img id="galleryImg" src="https://picsum.photos/id/24/600/350" alt="University textbook on desk">
+          <p id="galleryCaption">Featured Product Showcase</p>
+        </div>
+        <button id="nextBtn" class="gallery-btn" aria-label="Next Slide">&rarr;</button>
+      </div>
+    </section>
+
+    <!-- Product Grid & Live Calculation -->
+    <section class="products-grid" id="productsContainer">
+      <!-- Dynamically populated via JavaScript -->
+    </section>
+
+    <section class="cart-summary">
+      <h3>Running Order Subtotal</h3>
+      <div id="subtotalMessage" class="subtotal-box">
+        Total: <span id="runningTotal">KES 0.00</span>
+      </div>
+      <p id="calcError" class="error-text hidden"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 CampusMarket. CIT 227 Semester Project.</p>
+  </footer>
+</body>
+</html>

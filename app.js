@@ -1,37 +1,19 @@
 /**
- * CampusMarket \u2014 Unified Integration Script
- * Enhanced: expanded catalog, add-to-cart controls, sorting, toasts,
- * gallery autoplay + dots, live registration validation.
+ * CampusMarket — Unified Integration Script
+ * Enhanced: Async Fetch integration across Catalog & Cart, live dataset filtering,
+ * error handling, loading state, dynamic gallery, and full registration validation.
  */
 
-// Master Product Dataset
-const products = [
-  { id: 1,  name: "Calculus: Early Transcendentals",       category: "books",     price: 2500, description: "Essential textbook for Year 1 Mathematics.",            image: "https://pictures.abebooks.com/isbn/9780618502981-us.jpg", alt: "Calculus textbook cover" },
-  { id: 2,  name: "Scientific Calculator FX-991EX",         category: "tech",      price: 3200, description: "Approved for engineering and CS examinations.",         image: "https://i.ebayimg.com/images/g/dNsAAOSwk3VnMzLx/s-l1200.jpg", alt: "Casio ClassWiz FX-991EX scientific calculator" },
-  { id: 3,  name: "Stainless Steel Water Flask",            category: "lifestyle", price: 1200, description: "1-liter insulated thermal flask.",                     image: "https://images.thdstatic.com/productImages/37d77f0f-e238-4184-9934-369656d5773a/svn/wudkey-travel-mugs-tumblers-yc7y87-3-64_600.jpg", alt: "Stainless steel insulated water flask" },
-  { id: 4,  name: "Data Structures & Algorithms in C++",    category: "books",     price: 2800, description: "Core textbook for CCS 2315.",                          image: "https://m.media-amazon.com/images/I/61hH3KIEIRL._AC_UF1000,1000_QL80_.jpg", alt: "Data Structures and Algorithms in C++ book cover" },
-  { id: 5,  name: "Wireless Ergonomic Mouse",               category: "tech",      price: 1800, description: "2.4GHz rechargeable wireless mouse.",                 image: "https://m.media-amazon.com/images/I/51TlYuAqbsL._AC_UF894,1000_QL80_.jpg", alt: "Wireless ergonomic computer mouse" },
-  { id: 6,  name: "Organic Chemistry, 8th Edition",         category: "books",     price: 3000, description: "Comprehensive reference for CHE 2201.",              image: "https://m.media-amazon.com/images/I/61rYrfXdLKL._AC_UF1000,1000_QL80_.jpg", alt: "Organic Chemistry textbook cover" },
-  { id: 7,  name: "Introduction to Psychology",             category: "books",     price: 2200, description: "Foundational reading for PSY 1101.",                  image: "https://m.media-amazon.com/images/I/91EkMmX6y6L._AC_UF1000,1000_QL80_.jpg", alt: "Introduction to Psychology textbook cover" },
-  { id: 8,  name: "Financial Accounting Fundamentals",      category: "books",     price: 2600, description: "Practice-focused text for BCA 2102.",               image: "https://m.media-amazon.com/images/I/61v0vG3Sp0L._UF1000,1000_QL80_.jpg", alt: "Financial Accounting textbook cover" },
-  { id: 9,  name: "Engineering Mechanics: Statics",         category: "books",     price: 2900, description: "Problem sets aligned with EME 2105.",               image: "https://m.media-amazon.com/images/I/81wDO0PXQVL._AC_UF1000,1000_QL80_.jpg", alt: "Engineering Mechanics: Statics textbook cover" },
-  { id: 10, name: "USB-C 65W Fast Charger",                 category: "tech",      price: 2400, description: "GaN charger for laptops and phones.",                image: "https://www.gearit.com/cdn/shop/files/GI-GC65W-C2A1-BK.1.jpg?v=1788459088&width=1200", alt: "65W USB-C GaN fast charger" },
-  { id: 11, name: "Noise-Cancelling Headphones",           category: "tech",      price: 4500, description: "Over-ear ANC headset for focused study.",           image: "https://m.media-amazon.com/images/I/71YM2N5whtL.jpg", alt: "Over-ear noise-cancelling headphones" },
-  { id: 12, name: "16GB USB 3.0 Flash Drive",               category: "tech",      price: 900,  description: "Fast transfer drive for assignments.",              image: "https://www.sandisk.com/content/dam/store/en-us/assets/products/usb-flash-drives/ultra-usb-3-0/gallery/ultra-usb-3-0-front.png", alt: "SanDisk USB 3.0 flash drive" },
-  { id: 13, name: "Laptop Cooling Pad",                     category: "tech",      price: 1600, description: "Dual-fan stand to keep your laptop cool.",          image: "https://m.media-amazon.com/images/I/71jY2GkOIJL.jpg", alt: "Dual-fan laptop cooling pad" },
-  { id: 14, name: "1080p HD Webcam",                        category: "tech",      price: 3100, description: "Clip-on camera for online classes.",               image: "https://m.media-amazon.com/images/I/81-rvqTiJnL.jpg", alt: "1080p HD webcam" },
-  { id: 15, name: "Adjustable Study Desk Lamp",             category: "lifestyle", price: 1500, description: "Dimmable LED lamp with USB port.",                 image: "https://m.media-amazon.com/images/I/71fJyc-FZ3L._AC_UF894,1000_QL80_.jpg", alt: "Dimmable LED desk lamp" },
-  { id: 16, name: "Memory Foam Seat Cushion",               category: "lifestyle", price: 1900, description: "Ergonomic support for long study sessions.",       image: "https://m.media-amazon.com/images/I/71mnqkk5CRL._AC_UF894,1000_QL80_.jpg", alt: "Memory foam seat cushion" },
-  { id: 17, name: "Compact Mini Fridge 4L",                 category: "lifestyle", price: 6500, description: "Portable dorm fridge for drinks and snacks.",       image: "https://www.honeywellstore.com/store/images/products/large_images/h16mrs-honeywell-mini-fridge-with-freezer-stainless-steel-1.jpg", alt: "Compact stainless steel mini fridge" }
-];
-
-const CATEGORY_LABELS = { books: "Textbooks", tech: "Electronics", lifestyle: "Lifestyle" };
+// Dataset loaded dynamically via fetch()
+let products = [];
+let filteredProducts = [];
+let currentGalleryIndex = 0;
+let galleryTimer = null;
 
 // Persistent Cart State across pages
 let cart = JSON.parse(localStorage.getItem("campusmarket_cart")) || {};
-let filteredProducts = [...products];
-let currentGalleryIndex = 0;
-let galleryTimer = null;
+
+const CATEGORY_LABELS = { books: "Textbooks", tech: "Electronics", lifestyle: "Lifestyle" };
 
 document.addEventListener("DOMContentLoaded", () => {
   ensureToastContainer();
@@ -63,7 +45,7 @@ function updateNavCartCount() {
   const count = cartItemCount();
   badge.textContent = count;
   badge.classList.remove("bump");
-  // restart animation
+  // Restart animation
   void badge.offsetWidth;
   badge.classList.add("bump");
 }
@@ -98,9 +80,49 @@ function showToast(message, type) {
     setTimeout(() => toast.remove(), 300);
   }, 2600);
 }
+
 /* ==========================================================================
-   Catalog Page & Gallery Controls
+   Catalog Page, Fetch Data & Gallery Controls
    ========================================================================== */
+async function fetchProducts() {
+  const loadingIndicator = document.getElementById("loadingIndicator");
+  const fetchErrorBanner = document.getElementById("fetchErrorBanner");
+  const container = document.getElementById("productsContainer");
+  const resultCountEl = document.getElementById("resultCount");
+
+  // Requirement #4: Show loading state initially
+  if (loadingIndicator) loadingIndicator.classList.remove("hidden");
+  if (fetchErrorBanner) fetchErrorBanner.classList.add("hidden");
+  if (container) container.classList.add("hidden");
+
+  try {
+    const response = await fetch("products.json");
+
+    // Check if HTTP response status is ok (200-299)
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    products = await response.json();
+    filteredProducts = [...products];
+
+    // Hide loading indicator and reveal products container
+    if (loadingIndicator) loadingIndicator.classList.add("hidden");
+    if (container) container.classList.remove("hidden");
+
+    // Perform initial render
+    filterAndRender();
+    startGalleryAutoplay();
+
+  } catch (error) {
+    console.error("Fetch failed:", error);
+    // Requirement #3: Graceful failure - display clear error message without breaking page
+    if (loadingIndicator) loadingIndicator.classList.add("hidden");
+    if (fetchErrorBanner) fetchErrorBanner.classList.remove("hidden");
+    if (resultCountEl) resultCountEl.textContent = "Catalog currently unavailable.";
+  }
+}
+
 function initCatalogPage() {
   const searchInput = document.getElementById("searchInput");
   const categorySelect = document.getElementById("categorySelect");
@@ -112,8 +134,8 @@ function initCatalogPage() {
   categorySelect.addEventListener("change", filterAndRender);
   if (sortSelect) sortSelect.addEventListener("change", filterAndRender);
 
-  prevBtn.addEventListener("click", () => { navigateGallery(-1); restartGalleryAutoplay(); });
-  nextBtn.addEventListener("click", () => { navigateGallery(1); restartGalleryAutoplay(); });
+  if (prevBtn) prevBtn.addEventListener("click", () => { navigateGallery(-1); restartGalleryAutoplay(); });
+  if (nextBtn) nextBtn.addEventListener("click", () => { navigateGallery(1); restartGalleryAutoplay(); });
 
   // Keyboard navigation for the gallery
   document.addEventListener("keydown", (e) => {
@@ -128,8 +150,8 @@ function initCatalogPage() {
     galleryContainer.addEventListener("mouseleave", startGalleryAutoplay);
   }
 
-  filterAndRender();
-  startGalleryAutoplay();
+  // Initiate dynamic fetch (Requirement #1)
+  fetchProducts();
 }
 
 function filterAndRender() {
@@ -138,6 +160,7 @@ function filterAndRender() {
   const sortSelect = document.getElementById("sortSelect");
   const sortBy = sortSelect ? sortSelect.value : "featured";
 
+  // Requirement #2: Filtering logic operates on fetched array
   filteredProducts = products.filter(p => {
     const matchesCategory = (category === "all" || p.category === category);
     const matchesSearch = p.name.toLowerCase().includes(query) ||
@@ -170,6 +193,7 @@ function updateResultCount(count) {
 
 function renderProductGrid(items) {
   const container = document.getElementById("productsContainer");
+  if (!container) return;
   container.innerHTML = "";
 
   if (items.length === 0) {
@@ -302,7 +326,7 @@ function refreshCardControls(product) {
   actions.appendChild(buildCardControls(product));
 }
 
-/* ---- Featured gallery ---- */
+/* ---- Featured Gallery ---- */
 function buildGalleryDots() {
   const dotsWrap = document.getElementById("galleryDots");
   if (!dotsWrap) return;
@@ -396,11 +420,22 @@ function updateRunningTotal() {
   }
   if (calcError) calcError.classList.add("hidden");
 }
+
 /* ==========================================================================
-   Cart Page Logic
+   Cart Page Logic (Fetches products.json to match cart IDs)
    ========================================================================== */
-function initCartPage() {
-  renderCartTable();
+async function initCartPage() {
+  try {
+    const response = await fetch("products.json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    products = await response.json();
+    renderCartTable();
+  } catch (error) {
+    console.error("Failed to load products for cart:", error);
+    showToast("Unable to load cart item details.", "error");
+  }
 
   const clearBtn = document.getElementById("clearCartBtn");
   const checkoutBtn = document.getElementById("checkoutBtn");
@@ -656,6 +691,7 @@ function updatePasswordStrength(value) {
 
 function showError(errorId, text, inputEl) {
   const errorSpan = document.getElementById(errorId);
+  if (!errorSpan) return;
   errorSpan.textContent = text;
   errorSpan.classList.add("visible");
   if (inputEl) { inputEl.classList.add("invalid"); inputEl.classList.remove("valid"); }
@@ -663,6 +699,7 @@ function showError(errorId, text, inputEl) {
 
 function clearError(errorId, inputEl) {
   const errorSpan = document.getElementById(errorId);
+  if (!errorSpan) return;
   errorSpan.textContent = "";
   errorSpan.classList.remove("visible");
   if (inputEl) { inputEl.classList.remove("invalid"); inputEl.classList.add("valid"); }

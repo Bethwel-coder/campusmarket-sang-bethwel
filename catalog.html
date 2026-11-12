@@ -58,9 +58,21 @@
       <div id="galleryDots" class="gallery-dots" role="tablist" aria-label="Gallery navigation"></div>
     </section>
 
-    <!-- Product Grid -->
-    <section class="products-grid" id="productsContainer">
-      <!-- Populated via JavaScript -->
+    <!-- Loading State Indicator (Requirement #4) -->
+    <div id="loadingIndicator" class="hero">
+      <h3>Loading products...</h3>
+      <p>Please wait while we fetch the latest catalog items.</p>
+    </div>
+
+    <!-- Graceful Fetch Error State (Requirement #3) -->
+    <div id="fetchErrorBanner" class="hero hidden" style="border-left: 5px solid var(--danger);">
+      <h3 style="color: var(--danger);">Unable to load catalog</h3>
+      <p class="error-text">Failed to retrieve product data. Please check your network connection or try again later.</p>
+    </div>
+
+    <!-- Product Grid (Populated via fetch in JavaScript - Requirement #1) -->
+    <section class="products-grid hidden" id="productsContainer">
+      <!-- Dynamic product cards rendered here -->
     </section>
 
     <section class="cart-summary">

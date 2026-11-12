@@ -1,0 +1,155 @@
+[
+  {
+    "id": 1,
+    "name": "Calculus: Early Transcendentals",
+    "category": "books",
+    "price": 2500,
+    "description": "Essential textbook for Year 1 Mathematics.",
+    "image": "https://pictures.abebooks.com/isbn/9780618502981-us.jpg",
+    "alt": "Calculus textbook cover"
+  },
+  {
+    "id": 2,
+    "name": "Scientific Calculator FX-991EX",
+    "category": "tech",
+    "price": 3200,
+    "description": "Approved for engineering and CS examinations.",
+    "image": "https://i.ebayimg.com/images/g/dNsAAOSwk3VnMzLx/s-l1200.jpg",
+    "alt": "Casio ClassWiz FX-991EX scientific calculator"
+  },
+  {
+    "id": 3,
+    "name": "Stainless Steel Water Flask",
+    "category": "lifestyle",
+    "price": 1200,
+    "description": "1-liter insulated thermal flask.",
+    "image": "https://images.thdstatic.com/productImages/37d77f0f-e238-4184-9934-369656d5773a/svn/wudkey-travel-mugs-tumblers-yc7y87-3-64_600.jpg",
+    "alt": "Stainless steel insulated water flask"
+  },
+  {
+    "id": 4,
+    "name": "Data Structures & Algorithms in C++",
+    "category": "books",
+    "price": 2800,
+    "description": "Core textbook for CCS 2315.",
+    "image": "https://m.media-amazon.com/images/I/61hH3KIEIRL._AC_UF1000,1000_QL80_.jpg",
+    "alt": "Data Structures and Algorithms in C++ book cover"
+  },
+  {
+    "id": 5,
+    "name": "Wireless Ergonomic Mouse",
+    "category": "tech",
+    "price": 1800,
+    "description": "2.4GHz rechargeable wireless mouse.",
+    "image": "https://m.media-amazon.com/images/I/51TlYuAqbsL._AC_UF894,1000_QL80_.jpg",
+    "alt": "Wireless ergonomic computer mouse"
+  },
+  {
+    "id": 6,
+    "name": "Organic Chemistry, 8th Edition",
+    "category": "books",
+    "price": 3000,
+    "description": "Comprehensive reference for CHE 2201.",
+    "image": "https://m.media-amazon.com/images/I/61rYrfXdLKL._AC_UF1000,1000_QL80_.jpg",
+    "alt": "Organic Chemistry textbook cover"
+  },
+  {
+    "id": 7,
+    "name": "Introduction to Psychology",
+    "category": "books",
+    "price": 2200,
+    "description": "Foundational reading for PSY 1101.",
+    "image": "https://m.media-amazon.com/images/I/91EkMmX6y6L._AC_UF1000,1000_QL80_.jpg",
+    "alt": "Introduction to Psychology textbook cover"
+  },
+  {
+    "id": 8,
+    "name": "Financial Accounting Fundamentals",
+    "category": "books",
+    "price": 2600,
+    "description": "Practice-focused text for BCA 2102.",
+    "image": "https://m.media-amazon.com/images/I/61v0vG3Sp0L._UF1000,1000_QL80_.jpg",
+    "alt": "Financial Accounting textbook cover"
+  },
+  {
+    "id": 9,
+    "name": "Engineering Mechanics: Statics",
+    "category": "books",
+    "price": 2900,
+    "description": "Problem sets aligned with EME 2105.",
+    "image": "https://m.media-amazon.com/images/I/81wDO0PXQVL._AC_UF1000,1000_QL80_.jpg",
+    "alt": "Engineering Mechanics: Statics textbook cover"
+  },
+  {
+    "id": 10,
+    "name": "USB-C 65W Fast Charger",
+    "category": "tech",
+    "price": 2400,
+    "description": "GaN charger for laptops and phones.",
+    "image": "https://www.gearit.com/cdn/shop/files/GI-GC65W-C2A1-BK.1.jpg?v=1788459088&width=1200",
+    "alt": "65W USB-C GaN fast charger"
+  },
+  {
+    "id": 11,
+    "name": "Noise-Cancelling Headphones",
+    "category": "tech",
+    "price": 4500,
+    "description": "Over-ear ANC headset for focused study.",
+    "image": "https://m.media-amazon.com/images/I/71YM2N5whtL.jpg",
+    "alt": "Over-ear noise-cancelling headphones"
+  },
+  {
+    "id": 12,
+    "name": "16GB USB 3.0 Flash Drive",
+    "category": "tech",
+    "price": 900,
+    "description": "Fast transfer drive for assignments.",
+    "image": "https://www.sandisk.com/content/dam/store/en-us/assets/products/usb-flash-drives/ultra-usb-3-0/gallery/ultra-usb-3-0-front.png",
+    "alt": "SanDisk USB 3.0 flash drive"
+  },
+  {
+    "id": 13,
+    "name": "Laptop Cooling Pad",
+    "category": "tech",
+    "price": 1600,
+    "description": "Dual-fan stand to keep your laptop cool.",
+    "image": "https://m.media-amazon.com/images/I/71jY2GkOIJL.jpg",
+    "alt": "Dual-fan laptop cooling pad"
+  },
+  {
+    "id": 14,
+    "name": "1080p HD Webcam",
+    "category": "tech",
+    "price": 3100,
+    "description": "Clip-on camera for online classes.",
+    "image": "https://m.media-amazon.com/images/I/81-rvqTiJnL.jpg",
+    "alt": "1080p HD webcam"
+  },
+  {
+    "id": 15,
+    "name": "Adjustable Study Desk Lamp",
+    "category": "lifestyle",
+    "price": 1500,
+    "description": "Dimmable LED lamp with USB port.",
+    "image": "https://m.media-amazon.com/images/I/71fJyc-FZ3L._AC_UF894,1000_QL80_.jpg",
+    "alt": "Dimmable LED desk lamp"
+  },
+  {
+    "id": 16,
+    "name": "Memory Foam Seat Cushion",
+    "category": "lifestyle",
+    "price": 1900,
+    "description": "Ergonomic support for long study sessions.",
+    "image": "https://m.media-amazon.com/images/I/71mnqkk5CRL._AC_UF894,1000_QL80_.jpg",
+    "alt": "Memory foam seat cushion"
+  },
+  {
+    "id": 17,
+    "name": "Compact Mini Fridge 4L",
+    "category": "lifestyle",
+    "price": 6500,
+    "description": "Portable dorm fridge for drinks and snacks.",
+    "image": "https://www.honeywellstore.com/store/images/products/large_images/h16mrs-honeywell-mini-fridge-with-freezer-stainless-steel-1.jpg",
+    "alt": "Compact stainless steel mini fridge"
+  }
+]
